@@ -12,6 +12,9 @@ public class MazeGenerator : MonoBehaviour
     [SerializeField] private GameObject _finishPrefab;
     [SerializeField] private NavMeshSurface _navMeshSurface;
 
+    // Private
+    private List<MazeNode> nodes = new List<MazeNode>();
+
     private void Start()
     {
         GenerateMazeInstant(_mazeSize);
@@ -24,8 +27,6 @@ public class MazeGenerator : MonoBehaviour
 
     private void GenerateMazeInstant(Vector2Int size)
     {
-        List<MazeNode> nodes = new List<MazeNode>();
-
         // create nodes
         for (int x = 0; x < size.x; x++)
         {
@@ -136,11 +137,14 @@ public class MazeGenerator : MonoBehaviour
         }
     }
 
+    public void InstantiatePlayer()
+    {
+        Instantiate(_playerPrefab, new Vector3(nodes[0].transform.position.x, _playerPrefab.transform.position.y, nodes[0].transform.position.z), Quaternion.identity);
+    }
+
     // for debug
     private IEnumerator GenerateMaze(Vector2Int size)
     {
-        List<MazeNode> nodes = new List<MazeNode>();
-
         // create nodes
         for (int x = 0; x < size.x; x++)
         {

@@ -1,9 +1,13 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class MoveTowardsPoint : MonoBehaviour
 {
+    // Public
+    public static event Action OnCreated;
+
     // Serialize
     [SerializeField] private NavMeshAgent _navMeshAgent;
     [SerializeField] private LineRenderer _pathLine;
@@ -20,9 +24,10 @@ public class MoveTowardsPoint : MonoBehaviour
 
     private void Start()
     {
-        _targetTransform = FindObjectOfType<Target>().transform;
+        _targetTransform = FindObjectOfType<Finish>().transform;
         Invoke(nameof(StartMove), _delayBeforeMove);
         _drawPathCoroutine = StartCoroutine(DrawPathToTarget());
+        OnCreated?.Invoke();
     }
 
     private void Update()

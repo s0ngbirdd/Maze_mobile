@@ -56,7 +56,7 @@ MonoBehaviour:
   - {fileID: 8552088942835275896}
   _floor: {fileID: 8552088943118971869}
   _deadZone: {fileID: 8552088943118971864}
-  _chanceToActivateDeadZone: 10
+  _chanceToActivateDeadZone: 20
 --- !u!1 &8552088942835275896
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public enum NodeState
@@ -17,12 +15,25 @@ public class MazeNode : MonoBehaviour
     [SerializeField] private GameObject _deadZone;
     [SerializeField] private float _chanceToActivateDeadZone = 10f;
 
+    // Private
+    private bool _removeDeadZone;
+
     private void Start()
     {
-        if (Random.Range(0, 100) <= _chanceToActivateDeadZone)
+        if (Random.Range(0, 100) <= _chanceToActivateDeadZone && !_removeDeadZone)
         {
             _deadZone.SetActive(true);
         }
+    }
+
+    public void RemoveWall(int wallToRemove)
+    {
+        _walls[wallToRemove].gameObject.SetActive(false);
+    }
+
+    public void RemoveDeadZone()
+    {
+        _removeDeadZone = true;
     }
 
     // for debug
@@ -40,15 +51,5 @@ public class MazeNode : MonoBehaviour
                 _floor.material.color = Color.blue;
                 break;
         }
-    }
-
-    public void RemoveWall(int wallToRemove)
-    {
-        _walls[wallToRemove].gameObject.SetActive(false);
-    }
-
-    public void RemoveDeadZone()
-    {
-        _deadZone.SetActive(false);
     }
 }

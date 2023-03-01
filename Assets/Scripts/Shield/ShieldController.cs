@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ShieldController : MonoBehaviour
@@ -12,9 +10,14 @@ public class ShieldController : MonoBehaviour
     private MeshRenderer _meshRenderer;
     private bool _isActiveShield;
 
-    private void Start()
+    private void OnEnable()
     {
-        Invoke(nameof(FindObject), 0.1f);
+        MoveTowardsPoint.OnCreated += FindPlayerObject;
+    }
+
+    private void OnDisable()
+    {
+        MoveTowardsPoint.OnCreated -= FindPlayerObject;
     }
 
     public void ActivateShield()
@@ -29,7 +32,7 @@ public class ShieldController : MonoBehaviour
         _isActiveShield = false;
     }
 
-    private void FindObject()
+    private void FindPlayerObject()
     {
         _meshRenderer = FindObjectOfType<MoveTowardsPoint>().GetComponent<MeshRenderer>();
     }

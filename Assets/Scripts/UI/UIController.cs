@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,6 +8,13 @@ public class UIController : MonoBehaviour
     [SerializeField] private Animator _popupAnimator;
     [SerializeField] private Button _pauseButton;
     [SerializeField] private Button _shieldButton;
+    [SerializeField] private GameObject _startFade;
+    [SerializeField] private GameObject _endFade;
+
+    private void Start()
+    {
+        EnableStartFade();
+    }
 
     public void EnablePopup()
     {
@@ -35,5 +40,15 @@ public class UIController : MonoBehaviour
     public void ExitGame()
     {
         Application.Quit();
+    }
+
+    public void EnableEndFade()
+    {
+        _endFade.SetActive(true);
+    }
+
+    public void EnableStartFade()
+    {
+        _startFade.SetActive(true);
     }
 }
