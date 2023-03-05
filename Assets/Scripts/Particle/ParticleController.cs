@@ -38,6 +38,9 @@ public class ParticleController : MonoBehaviour
 
     private void InstantiatePlayer()
     {
-        _mazeGenerator.InstantiatePlayer();
+        if (!FindObjectOfType<MoveTowardsPoint>())
+        {
+            _mazeGenerator.InstantiatePlayer();
+        }
     }
 }

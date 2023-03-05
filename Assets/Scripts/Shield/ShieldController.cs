@@ -22,14 +22,20 @@ public class ShieldController : MonoBehaviour
 
     public void ActivateShield()
     {
-        _meshRenderer.material = _shieldMaterial;
-        _isActiveShield = true;
+        if (_meshRenderer != null)
+        {
+            _meshRenderer.material = _shieldMaterial;
+            _isActiveShield = true;
+        }
     }
 
     public void DeactivateShield()
     {
-        _meshRenderer.material = _defaultMaterial;
-        _isActiveShield = false;
+        if (_meshRenderer != null)
+        {
+            _meshRenderer.material = _defaultMaterial;
+            _isActiveShield = false;
+        }
     }
 
     private void FindPlayerObject()
