@@ -1,20 +1,28 @@
+using System;
 using UnityEngine;
 
 public class ParticleController : MonoBehaviour
 {
+    // Public
+    public static event Action OnParticleEnd;
+
     // Serialize
     [SerializeField] private ParticleSystem _confettiParticle;
     [SerializeField] private ParticleSystem _scatteringParticle;
 
-    // Private
-    private MazeGenerator _mazeGenerator;
-
-    private void Start()
+    private void OnEnable()
     {
-        _mazeGenerator = FindObjectOfType<MazeGenerator>();
+        Finish.OnFinishPosition += PlayConfettiParticle;
+        DeadZone.OnDeath += PlayScatteringParticle;
     }
 
-    public void PlayConfettiParticle(Vector3 position)
+    private void OnDisable()
+    {
+        Finish.OnFinishPosition -= PlayConfettiParticle;
+        DeadZone.OnDeath -= PlayScatteringParticle;
+    }
+
+    private void PlayConfettiParticle(Vector3 position)
     {
         transform.position = position;
 
@@ -24,7 +32,7 @@ public class ParticleController : MonoBehaviour
         }
     }
 
-    public void PlayScatteringParticle(Vector3 position)
+    private void PlayScatteringParticle(Vector3 position)
     {
         transform.position = position;
 
@@ -33,14 +41,11 @@ public class ParticleController : MonoBehaviour
             _scatteringParticle.Play();
         }
 
-        Invoke(nameof(InstantiatePlayer), 2f);
+        Invoke(nameof(InvokeOnParticleEnd), 2f);
     }
 
-    private void InstantiatePlayer()
+    private void InvokeOnParticleEnd()
     {
-        if (!FindObjectOfType<MoveTowardsPoint>())
-        {
-            _mazeGenerator.InstantiatePlayer();
-        }
+        OnParticleEnd?.Invoke();
     }
 }

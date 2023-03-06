@@ -4,12 +4,22 @@ using UnityEngine.UI;
 public class UIController : MonoBehaviour
 {
     // Serialize
-    [SerializeField] private GameObject _popup;
+    [SerializeField] private GameObject _popupObject;
     [SerializeField] private Animator _popupAnimator;
     [SerializeField] private Button _pauseButton;
     [SerializeField] private Button _shieldButton;
-    [SerializeField] private GameObject _startFade;
-    [SerializeField] private GameObject _endFade;
+    [SerializeField] private GameObject _startFadeObject;
+    [SerializeField] private GameObject _endFadeObject;
+
+    private void OnEnable()
+    {
+        Finish.OnFinish += EnableEndFade;
+    }
+
+    private void OnDisable()
+    {
+        Finish.OnFinish -= EnableEndFade;
+    }
 
     private void Start()
     {
@@ -18,7 +28,7 @@ public class UIController : MonoBehaviour
 
     public void EnablePopup()
     {
-        _popup.SetActive(true);
+        _popupObject.SetActive(true);
         Time.timeScale = 0;
         _pauseButton.interactable = false;
         _shieldButton.interactable = false;
@@ -26,7 +36,7 @@ public class UIController : MonoBehaviour
 
     public void DisablePopup()
     {
-        _popup.SetActive(false);
+        _popupObject.SetActive(false);
         Time.timeScale = 1;
         _pauseButton.interactable = true;
         _shieldButton.interactable = true;
@@ -42,13 +52,13 @@ public class UIController : MonoBehaviour
         Application.Quit();
     }
 
-    public void EnableEndFade()
+    private void EnableEndFade()
     {
-        _endFade.SetActive(true);
+        _endFadeObject.SetActive(true);
     }
 
     public void EnableStartFade()
     {
-        _startFade.SetActive(true);
+        _startFadeObject.SetActive(true);
     }
 }

@@ -15,6 +15,16 @@ public class MazeGenerator : MonoBehaviour
     // Private
     private List<MazeNode> nodes = new List<MazeNode>();
 
+    private void OnEnable()
+    {
+        ParticleController.OnParticleEnd += InstantiatePlayer;
+    }
+
+    private void OnDisable()
+    {
+        ParticleController.OnParticleEnd -= InstantiatePlayer;
+    }
+
     private void Start()
     {
         GenerateMazeInstant(_mazeSize);
@@ -137,9 +147,12 @@ public class MazeGenerator : MonoBehaviour
         }
     }
 
-    public void InstantiatePlayer()
+    private void InstantiatePlayer()
     {
-        Instantiate(_playerPrefab, new Vector3(nodes[0].transform.position.x, _playerPrefab.transform.position.y, nodes[0].transform.position.z), Quaternion.identity);
+        if (!FindObjectOfType<MoveTowardsPoint>())
+        {
+            Instantiate(_playerPrefab, new Vector3(nodes[0].transform.position.x, _playerPrefab.transform.position.y, nodes[0].transform.position.z), Quaternion.identity);
+        }
     }
 
     // for debug

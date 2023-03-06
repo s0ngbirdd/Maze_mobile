@@ -178,6 +178,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ConfettiParticle
       objectReference: {fileID: 0}
+    - target: {fileID: 2455821616417584990, guid: ad3c57caf6d1e6446b4092f9a033162b, type: 3}
+      propertyPath: looping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2455821616417584990, guid: ad3c57caf6d1e6446b4092f9a033162b, type: 3}
+      propertyPath: prewarm
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2455821616417584991, guid: ad3c57caf6d1e6446b4092f9a033162b, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -2565,12 +2573,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d16bd92c3472bca41b1d0bd7a02fb921, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _popup: {fileID: 915603780}
+  _popupObject: {fileID: 915603780}
   _popupAnimator: {fileID: 915603782}
   _pauseButton: {fileID: 119786391}
   _shieldButton: {fileID: 2065527379}
-  _startFade: {fileID: 1500421270}
-  _endFade: {fileID: 169636356}
+  _startFadeObject: {fileID: 1500421270}
+  _endFadeObject: {fileID: 169636356}
 --- !u!1 &1734077021
 GameObject:
   m_ObjectHideFlags: 0

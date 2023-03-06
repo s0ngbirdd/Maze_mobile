@@ -10,9 +10,9 @@ public enum NodeState
 public class MazeNode : MonoBehaviour
 {
     // Serialize
-    [SerializeField] private GameObject[] _walls;
-    [SerializeField] private MeshRenderer _floor;
-    [SerializeField] private GameObject _deadZone;
+    [SerializeField] private GameObject[] _wallObjects;
+    [SerializeField] private MeshRenderer _floorMeshRenderer;
+    [SerializeField] private GameObject _deadZoneObject;
     [SerializeField] private float _chanceToActivateDeadZone = 10f;
 
     // Private
@@ -20,15 +20,15 @@ public class MazeNode : MonoBehaviour
 
     private void Start()
     {
-        if (Random.Range(0, 100) <= _chanceToActivateDeadZone && !_removeDeadZone)
+        if (Random.Range(0, 100) < _chanceToActivateDeadZone && !_removeDeadZone)
         {
-            _deadZone.SetActive(true);
+            _deadZoneObject.SetActive(true);
         }
     }
 
     public void RemoveWall(int wallToRemove)
     {
-        _walls[wallToRemove].gameObject.SetActive(false);
+        _wallObjects[wallToRemove].gameObject.SetActive(false);
     }
 
     public void RemoveDeadZone()
@@ -42,13 +42,13 @@ public class MazeNode : MonoBehaviour
         switch (state)
         {
             case NodeState.AVAILABLE:
-                _floor.material.color = Color.white;
+                _floorMeshRenderer.material.color = Color.white;
                 break;
             case NodeState.CURRENT:
-                _floor.material.color = Color.yellow;
+                _floorMeshRenderer.material.color = Color.yellow;
                 break;
             case NodeState.COMPLETED:
-                _floor.material.color = Color.blue;
+                _floorMeshRenderer.material.color = Color.blue;
                 break;
         }
     }

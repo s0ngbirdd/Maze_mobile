@@ -1,20 +1,15 @@
+using System;
 using UnityEngine;
 
 public class Finish : MonoBehaviour
 {
-    // Private
-    private ParticleController _particleController;
-    private UIController _UIController;
-
-    private void Start()
-    {
-        _particleController = FindObjectOfType<ParticleController>();
-        _UIController = FindObjectOfType<UIController>();
-    }
+    // Public
+    public static event Action OnFinish;
+    public static event Action<Vector3> OnFinishPosition;
 
     private void OnTriggerEnter(Collider other)
     {
-        _particleController.PlayConfettiParticle(other.gameObject.transform.position);
-        _UIController.EnableEndFade();
+        OnFinishPosition?.Invoke(other.gameObject.transform.position);
+        OnFinish?.Invoke();
     }
 }

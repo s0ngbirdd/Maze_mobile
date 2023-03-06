@@ -254,5 +254,5 @@ MonoBehaviour:
   _pathLine: {fileID: -7977454239673462863}
   _minDistanceToTarget: 0.5
   _pathUpdateSpeed: 0.1
-  _pathHeightOffset: 0.25
+  _pathHeight: 0.25
   _delayBeforeMove: 2

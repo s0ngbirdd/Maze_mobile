@@ -13,7 +13,7 @@ public class MoveTowardsPoint : MonoBehaviour
     [SerializeField] private LineRenderer _pathLine;
     [SerializeField] private float _minDistanceToTarget = 1f;
     [SerializeField] private float _pathUpdateSpeed = 0.25f;
-    [SerializeField] private float _pathHeightOffset = 1f;
+    [SerializeField] private float _pathHeight = 0.25f;
     [SerializeField] private float _delayBeforeMove = 2f;
 
     // Private
@@ -66,7 +66,7 @@ public class MoveTowardsPoint : MonoBehaviour
 
                 for (int i = 0; i < path.corners.Length; i++)
                 {
-                    _pathLine.SetPosition(i, path.corners[i] + Vector3.up * _pathHeightOffset);
+                    _pathLine.SetPosition(i, path.corners[i] + Vector3.up * _pathHeight);
                 }
             }
             else

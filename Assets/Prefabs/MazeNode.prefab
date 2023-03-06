@@ -49,13 +49,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5b0ada150b438b478bab12ccdefe139, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _walls:
+  _wallObjects:
   - {fileID: 8552088943942493344}
   - {fileID: 8552088944284218710}
   - {fileID: 8552088943722166449}
   - {fileID: 8552088942835275896}
-  _floor: {fileID: 8552088943118971869}
-  _deadZone: {fileID: 8552088943118971864}
+  _floorMeshRenderer: {fileID: 8552088943118971869}
+  _deadZoneObject: {fileID: 8552088943118971864}
   _chanceToActivateDeadZone: 20
 --- !u!1 &8552088942835275896
 GameObject:
